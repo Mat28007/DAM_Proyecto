@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 10-mar-2019 11:47:42 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="tablas.Proveedor" table="proveedor" catalog="proyecto">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="usuarios" class="tablas.Usuario" fetch="select">
+            <column name="CreatedBy" not-null="true" />
+        </many-to-one>
+        <property name="denominacionSocial" type="string">
+            <column name="Denominacion_Social" length="45" not-null="true" />
+        </property>
+        <property name="direccion" type="string">
+            <column name="Direccion" length="45" not-null="true" />
+        </property>
+        <property name="codigoPostal" type="java.lang.Integer">
+            <column name="Codigo_Postal" />
+        </property>
+        <property name="telefono" type="java.lang.Integer">
+            <column name="Telefono" />
+        </property>
+        <property name="email" type="string">
+            <column name="Email" length="45" />
+        </property>
+        <property name="ciudad" type="string">
+            <column name="Ciudad" length="45" />
+        </property>
+        <property name="provincia" type="string">
+            <column name="Provincia" length="45" />
+        </property>
+        <property name="createdDate" type="date">
+            <column name="CreatedDate" length="10" />
+        </property>
+        <set name="supplierInvoiceses" table="supplier_invoices" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="idProveedor" not-null="true" />
+            </key>
+            <one-to-many class="tablas.SupplierInvoices" />
+        </set>
+    </class>
+</hibernate-mapping>

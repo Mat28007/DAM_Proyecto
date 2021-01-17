@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 10-mar-2019 11:47:42 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="tablas.CustomerInvoices" table="customer_invoices" catalog="proyecto">
+        <id name="idfacturaCliente" type="java.lang.Integer">
+            <column name="idfactura_cliente" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="cliente" class="tablas.Cliente" fetch="select">
+            <column name="idCliente" not-null="true" />
+        </many-to-one>
+        <property name="fecha" type="date">
+            <column name="fecha" length="10" />
+        </property>
+        <set name="customerLineItemses" table="customer_line_items" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="id_num_factura" not-null="true" />
+            </key>
+            <one-to-many class="tablas.CustomerLineItems" />
+        </set>
+    </class>
+</hibernate-mapping>

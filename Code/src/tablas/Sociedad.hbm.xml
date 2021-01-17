@@ -1,0 +1,55 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 15-mar-2019 22:08:28 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="tablas.Sociedad" table="SOCIEDAD">
+        <id name="id" type="java.lang.Integer">
+            <column name="ID" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="usuarios" class="tablas.Usuario" fetch="select" >
+            <column name="CreatedBy" not-null="true"/>
+        </many-to-one>
+        <property name="denominacionSocial" type="java.lang.String">
+            <column name="Denominacion_Social" />
+        </property>
+        <property name="direccion" type="java.lang.String">
+            <column name="Direccion" />
+        </property>
+        <property name="codigoPostal" type="java.lang.Integer">
+            <column name="Codigo_Postal" />
+        </property>
+        <property name="telefono" type="java.lang.Integer">
+            <column name="Telefono" />
+        </property>
+        <property name="email" type="java.lang.String">
+            <column name="Email" />
+        </property>
+        <property name="ciudad" type="java.lang.String">
+            <column name="Ciudad" />
+        </property>
+        <property name="provincia" type="java.lang.String">
+            <column name="Provincia" />
+        </property>
+        <property name="createdDate" type="java.util.Date">
+            <column name="CreatedDate" />
+        </property>
+        <set name="customerInvoiceses" table="SOCIEDAD" inverse="false" lazy="true">
+            <key>
+                <column name="ID" />
+            </key>
+            <element type="string">
+                <column name="CUSTOMERINVOICESES" />
+            </element>
+        </set>
+        <set name="supplierInvoiceses" table="SOCIEDAD" inverse="false" lazy="true">
+            <key>
+                <column name="ID" />
+            </key>
+            <element type="string">
+                <column name="SUPPLIERINVOICESES" />
+            </element>
+        </set>
+    </class>
+</hibernate-mapping>

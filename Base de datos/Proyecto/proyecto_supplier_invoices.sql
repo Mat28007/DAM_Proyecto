@@ -1,0 +1,55 @@
+-- MySQL dump 10.13  Distrib 5.7.19, for Win64 (x86_64)
+--
+-- Host: localhost    Database: proyecto
+-- ------------------------------------------------------
+-- Server version	5.7.19
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `supplier_invoices`
+--
+
+DROP TABLE IF EXISTS `supplier_invoices`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `supplier_invoices` (
+  `idSupplier_invoices` int(11) NOT NULL AUTO_INCREMENT,
+  `fecha` date DEFAULT NULL,
+  `idProveedor` int(11) NOT NULL,
+  `numero_factura` int(11) NOT NULL,
+  PRIMARY KEY (`idSupplier_invoices`),
+  KEY `fk_id_prov_idx` (`idProveedor`),
+  CONSTRAINT `fk_prov` FOREIGN KEY (`idProveedor`) REFERENCES `proveedor` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=78 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `supplier_invoices`
+--
+
+LOCK TABLES `supplier_invoices` WRITE;
+/*!40000 ALTER TABLE `supplier_invoices` DISABLE KEYS */;
+INSERT INTO `supplier_invoices` VALUES (3,'2019-03-02',1,4),(4,'2019-03-04',3,45),(13,'2019-03-08',3,1),(14,'2019-03-07',3,2),(15,'2019-03-01',3,7),(16,'2019-03-02',1,9),(17,'2019-03-01',3,3),(18,'2019-03-09',3,1),(19,'2019-03-09',1,5),(20,'2019-03-02',3,9),(21,'2019-03-14',1,8),(23,'2019-03-08',3,2),(24,'2019-03-01',3,1),(25,'2019-03-01',3,9),(27,'2019-03-01',3,4),(30,'2019-03-13',3,2),(31,'2019-03-01',3,8),(32,'2019-03-01',3,4),(33,'2019-03-10',3,4),(34,'2019-03-15',3,12),(37,'2019-03-01',1,1),(38,'2019-03-02',1,1),(39,'2019-03-01',1,1),(40,'2019-03-08',1,1),(41,'2019-03-01',1,1),(42,'2019-03-08',1,1),(43,'2019-03-15',1,1),(44,'2019-03-14',1,46),(45,'2019-03-09',1,47),(48,'2019-03-01',3,70),(50,'2019-03-02',1,14),(51,'2019-03-08',1,20),(52,'2019-03-21',1,77),(53,'2019-03-08',1,88),(54,'2019-03-02',1,100),(55,'2019-03-08',1,40),(56,'2019-03-08',1,44),(57,'2019-03-07',1,10),(59,'2019-04-12',3,41),(60,'2019-04-12',1,450),(62,'2019-04-11',4,1414),(63,'2019-04-05',4,78),(64,'2019-04-12',4,444),(65,'2019-04-11',1,445),(66,'2019-04-19',4,5555),(67,'2019-04-22',4,49),(68,'2019-04-04',1,4456),(69,'2019-05-10',3,4947),(74,'2019-05-09',5,159),(75,'2019-05-11',5,123),(76,'2019-05-16',5,7777),(77,'2019-05-10',6,4895);
+/*!40000 ALTER TABLE `supplier_invoices` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2019-05-05 10:02:07

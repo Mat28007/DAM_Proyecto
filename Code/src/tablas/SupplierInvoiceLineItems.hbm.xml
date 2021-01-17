@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 10-mar-2019 11:47:42 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="tablas.SupplierInvoiceLineItems" table="supplier_invoice_line_items" catalog="proyecto">
+        <id name="idsupplierInvoiceLineItems" type="java.lang.Integer">
+            <column name="idsupplier_invoice_line_items" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="articulo" class="tablas.Articulo" fetch="select">
+            <column name="id_producto" not-null="true" />
+        </many-to-one>
+        <many-to-one name="supplierInvoices" class="tablas.SupplierInvoices" fetch="select">
+            <column name="id_num_factura" not-null="true" />
+        </many-to-one>
+        <property name="cantidadComprada" type="java.lang.Integer">
+            <column name="cantidad_comprada" />
+        </property>
+        <property name="taxRateCharged" type="java.lang.Integer">
+            <column name="tax_rate_charged" />
+        </property>
+        <property name="precioCompra" type="big_decimal">
+            <column name="precio_compra" precision="10" />
+        </property>
+    </class>
+</hibernate-mapping>

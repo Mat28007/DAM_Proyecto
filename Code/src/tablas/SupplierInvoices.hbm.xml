@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 10-mar-2019 11:47:42 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="tablas.SupplierInvoices" table="supplier_invoices" catalog="proyecto">
+        <id name="idSupplierInvoices" type="java.lang.Integer">
+            <column name="idSupplier_invoices" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="proveedor" class="tablas.Proveedor" fetch="select">
+            <column name="idProveedor" not-null="true" />
+        </many-to-one>
+        <property name="fecha" type="date">
+            <column name="fecha" length="10" />
+              </property>
+        <property name="numeroFactura" type="int">
+            <column name="numero_factura" precision="10" not-null="true" />
+        </property>
+            
+      
+        <set name="supplierInvoiceLineItemses" table="supplier_invoice_line_items" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="id_num_factura" not-null="true" />
+            </key>
+            <one-to-many class="tablas.SupplierInvoiceLineItems" />
+        </set>
+    </class>
+</hibernate-mapping>

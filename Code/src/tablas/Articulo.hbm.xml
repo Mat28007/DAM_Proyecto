@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 18-mar-2019 21:54:19 by Hibernate Tools 4.3.5.Final -->
+<hibernate-mapping>
+    <class name="tablas.Articulo" table="articulo" catalog="proyecto" optimistic-lock="version">
+        <id name="idarticulo" type="java.lang.Integer">
+            <column name="idarticulo" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="categoria" class="tablas.Categoria" fetch="select">
+            <column name="fkcategoria" not-null="true" />
+        </many-to-one>
+        <property name="nombreArticulo" type="string">
+            <column name="nombre_articulo" length="45" not-null="true" unique="true" />
+        </property>
+        <property name="descripcion" type="string">
+            <column name="descripcion" length="45" />
+        </property>
+        <property name="precioVenta" type="double">
+            <column name="precio_venta" precision="10" />
+        </property>
+        <property name="precioCompra" type="double">
+            <column name="precio_compra" precision="10" not-null="true" />
+        </property>
+        <property name="inventario" type="java.lang.Integer">
+            <column name="inventario" />
+        </property>
+        <set name="supplierInvoiceLineItemses" table="supplier_invoice_line_items" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="id_producto" not-null="true" />
+            </key>
+            <one-to-many class="tablas.SupplierInvoiceLineItems" />
+        </set>
+        <set name="customerLineItemses" table="customer_line_items" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="id_producto" not-null="true" />
+            </key>
+            <one-to-many class="tablas.CustomerLineItems" />
+        </set>
+    </class>
+</hibernate-mapping>
