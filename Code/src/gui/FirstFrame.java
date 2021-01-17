@@ -1,6 +1,4 @@
 package gui;
-
-
 import gui.Cliente.FormPanelCliente;
 import gui.Cliente.JPanelCrearCliente;
 import gui.Cliente.JPanelModificarCliente;
@@ -15,18 +13,12 @@ import gui.GestionStock.JPanelGestionStock;
 import gui.GestionStock.JPanelRegistrarArticulo;
 import gui.GestionStock.JPanelStartStock;
 import gui.GestionStock.TablePanelStock;
-
-
-
-
 import gui.Listener.PrefsListener;
-
 import gui.Proveedor.FormPanelProveedor;
 import gui.Proveedor.JPanelCrearProveedor;
 import gui.Proveedor.JPanelModificarProveedor;
 import gui.Proveedor.JPanelStartProveedor;
 import gui.Proveedor.TablePanelProveedor;
-
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.Dimension;
@@ -67,7 +59,6 @@ import model.Acciones;
 import tablas.SupplierInvoices;
 import tablas.Usuario;
 import tipo.TipoPaneles;
-
 import controller.Controller;
 
 public class FirstFrame extends JFrame   {
@@ -79,8 +70,6 @@ public class FirstFrame extends JFrame   {
 	private JPanelModificarCliente jPanelModificarCliente;
 	private JPanelStartCliente jPanelStartCliente;
 	private TablePanelCliente tablePanelCliente;
-	
-
 	//Stock
 	private TablePanelStock tablePanelStock;
 	private FormPanelStock formPanelStock;
@@ -98,7 +87,6 @@ public class FirstFrame extends JFrame   {
 	private FormPanelDocument formPanelDocument;
 	private JPanelFacturaProveedor jPanelFacturaProveedor;
 	private SupplierInvoices supplierInvoice=new SupplierInvoices();
-	
 	private JFrameVentana jPanelVentana;
 	private JFileChooser fileChooser;
 	private Controller controller;
@@ -113,8 +101,6 @@ public class FirstFrame extends JFrame   {
 	private JScrollPane scrollPane;
 	Usuario u=new Usuario();
 
-
-	
 	public FirstFrame() {
 		// llamamos al super class constructor
 		super("PimPam");
@@ -122,21 +108,16 @@ public class FirstFrame extends JFrame   {
 		setVisible(true);
 		setExtendedState(MAXIMIZED_BOTH);	
 		setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
-	
 		// para gestionar el exit
 		addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowClosing(WindowEvent e) {
-				// permet de fermer la bd quand on quitte la app
-				//controller.disconect();
 				dispose();
 				System.gc();
 				System.exit(0);
 			}
 		});
 		
-		
-
 		// add mis componentes
 		toolbarPrincipal = new ToolBarPrincipal();
 		formPanelBotonesCliente = new FormPanelCliente();
@@ -146,10 +127,8 @@ public class FirstFrame extends JFrame   {
 		tablePanelCliente=new TablePanelCliente();
 		jPanelCrearCliente=new JPanelCrearCliente();
 		jPanelStartCliente=new JPanelStartCliente();
-		
 		cards= new JPanel();
 		cards1= new JPanel();
-	//	splitPanel1=new JSplitPane(JSplitPane.HORIZONTAL_SPLIT,formPanelBotonesCliente,panelCrearCliente);
 		formPanelStock=new FormPanelStock();
 		jPanelStartStock=new JPanelStartStock();
 		jPanelGestionStock=new JPanelGestionStock();
@@ -167,31 +146,23 @@ public class FirstFrame extends JFrame   {
 		jPanelFacturaProveedor=new JPanelFacturaProveedor();
 		jPanelVentana=new JFrameVentana(this);
 		jPanelVentana.setVisible(false);
-		// this= parent de la classe PrefsDialog
 		prefsDialog = new PrefsDialog(this);
 		prefs = Preferences.userRoot().node("db");
 		setJMenuBar(createMenuBar());
 		
 		 add(toolbarPrincipal, BorderLayout.NORTH);
-		
-		
-	
 		 cards.setLayout(cardLayout);
 		 cards.add(jPanelCrearCliente, "crear");
 		 cards.add(jPanelModificarCliente, "editar");
 		 cards.add(tablePanelCliente, "visualisar");
 		 cards.add(jPanelStartCliente, "panelcentralCliente");
-		
 		 cards.add(jPanelStartStock, "panelcentralStock");
-		// cards.add(panelGestionStock, "visualisarStock");
 		 cards.add(tablePanelStock,"visualisarStock");
-		 cards.add(jPanelregistrarArticulo,"anadir producto");
-		 
+		 cards.add(jPanelregistrarArticulo,"anadir producto"); 
 		 cards.add(jPanelStartProveedor, "panelcentralProveedor");
 		 cards.add(jPanelModificarProveedor, "editarProveedor");
 		 cards.add(tablePanelProveedor, "visualisarProveedor");
 		 cards.add(jPanelCrearProveedor, "crearProveedor");
-
 		 cards.add(jPanelStartDocumento, "panelcentralDocumento");
 		 cards.add(jPanelFacturaProveedor,"crearFacturaProveedor");
 		 
@@ -223,10 +194,9 @@ public class FirstFrame extends JFrame   {
 		 formPanelDocument.getFacturaProveedorPdf().addActionListener(new Acciones(this));
 
 	}
-	// methode pour la bar de menu
+	// methode for the menu bar
 	private JMenuBar createMenuBar() {
 		JMenuBar menuBar = new JMenuBar();
-
 		JMenu fileMenu = new JMenu("File");
 		menuBar.add(fileMenu);
 		JMenuItem exportMenuData = new JMenuItem("Export Data");
@@ -234,13 +204,10 @@ public class FirstFrame extends JFrame   {
 		JMenuItem exitItem = new JMenuItem("Exit");
 		fileMenu.add(exportMenuData);
 		fileMenu.add(importMenuData);
-		// pour separer les items
+		// To separate the items
 		fileMenu.addSeparator();
 		fileMenu.add(exitItem);
 		
-			
-	
-
 		JMenu windowMenu = new JMenu("window");
 		windowMenu.addSeparator();
 		menuBar.add(windowMenu);
@@ -261,9 +228,7 @@ public class FirstFrame extends JFrame   {
 		menuBar.add(jNombreUsuario);
 		menuBar.add(jtextUsuario);
 
-		
-		
-		// on ajoute une action a checkbox du menu
+		//  menu checkbox
 		checkBoxShowFormItem.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent ev) {
@@ -273,7 +238,7 @@ public class FirstFrame extends JFrame   {
 					splitPanel1.setDividerLocation((int) formPanelBotonesCliente
 							.getMinimumSize().getWidth());
 				}
-				// permet d´afficher ou non le FormPanel si click ou pas
+				// permet dÂ´afficher ou non le FormPanel si click ou pas
 				formPanelBotonesCliente.setVisible(menuItem.isSelected());
 			}
 		});
@@ -288,7 +253,7 @@ public class FirstFrame extends JFrame   {
 
 		// on utilise Preferences pour sauver les passwords et usuario de
 		// preferencias avec interface PrefsListener
-		// crée une classe anonyme avec cette interface
+		// crÃ©e une classe anonyme avec cette interface
 		prefsDialog.setPrefsListener(new PrefsListener() {
 			@Override
 			public void preferencesSet(String user, String password,
@@ -567,7 +532,7 @@ public class FirstFrame extends JFrame   {
 			Dimension btnSize = cancelButton.getPreferredSize();
 			okButton.setPreferredSize(btnSize);
 
-			// / ajoute un sub panel à dialogue
+			// / ajoute un sub panel Ã  dialogue
 			setLayout(new BorderLayout());
 			add(controlsPanel, BorderLayout.CENTER);
 			add(buttonsPanel, BorderLayout.SOUTH);
